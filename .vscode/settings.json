@@ -40,13 +40,10 @@
   "python.linting.pydocstyleArgs": ["--convention=google"],
   "python.linting.pylintArgs": [],
   "python.linting.pylintEnabled": false,
-  "python.linting.pylintUseMinimalCheckers": false,
-  "python.pythonPath": "/home/seapagan/.pyenv/versions/calendar/bin/python",
-  "python.sortImports.args": ["--profile", "black", "--src=${workspaceFolder}"],
-  "python.testing.nosetestsEnabled": false,
+  "python.pythonPath": "./.venv/bin/python",
+  "isort.args": ["--profile", "black", "--src=${workspaceFolder}"],
   "python.testing.pytestArgs": ["tests"],
   "python.testing.pytestEnabled": true,
   "python.testing.unittestArgs": ["-v", "-s", "./tests", "-p", "*_test.py"],
-  "python.testing.unittestEnabled": false,
-  "testExplorer.addToEditorContextMenu": true
+  "python.testing.unittestEnabled": false
 }
