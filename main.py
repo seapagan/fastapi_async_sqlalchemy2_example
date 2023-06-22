@@ -1,3 +1,4 @@
+"""An example of using FastAPI with Async SQLAlchemy 2."""
 import subprocess
 from contextlib import asynccontextmanager
 
@@ -29,8 +30,11 @@ app = FastAPI(lifespan=lifespan)
 
 
 async def get_db():
-    """Get a database session."""
-    async with async_session() as session:  # type: ignore
+    """Get a database session.
+
+    To be used for dependency injection.
+    """
+    async with async_session() as session:
         async with session.begin():
             yield session
 

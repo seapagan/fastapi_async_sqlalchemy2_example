@@ -1,12 +1,9 @@
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+"""Set up the database connection and session.""" ""
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+from sqlalchemy.orm import declarative_base
 
 DATABASE_URL = "postgresql+asyncpg://postgres:postgres@localhost/postgres"
 
 engine = create_async_engine(DATABASE_URL, echo=False)
 Base = declarative_base()
-
-
-async_session = sessionmaker(
-    engine, class_=AsyncSession, expire_on_commit=False  # type: ignore
-)
+async_session = async_sessionmaker(engine, expire_on_commit=False)
