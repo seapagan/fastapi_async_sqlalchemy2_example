@@ -4,6 +4,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
   - [Local Postgres server using Docker](#local-postgres-server-using-docker)
+  - [Use SQLite instead of PostgreSQL](#use-sqlite-instead-of-postgresql)
 - [License](#license)
 
 ## Introduction
@@ -83,6 +84,17 @@ docker exec -it postgres psql -U postgres
 ```
 
 This will allow you to edit or delete the database or records.
+
+### Use SQLite instead of PostgreSQL
+
+For testing purposes, you can also use SQLite instead of PostgreSQL. To do so,
+open the [dp.py](db.py) file and comment out the PostgreSQL database in the
+`DATABASE_URL` environment variable and uncomment the SQLite database.
+
+```python
+# DATABASE_URL = "postgresql+asyncpg://postgres:postgres@localhost/postgres"
+DATABASE_URL = "sqlite+aiosqlite:///./test.db"
+```
 
 ## License
 
