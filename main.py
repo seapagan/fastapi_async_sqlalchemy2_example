@@ -1,7 +1,7 @@
 """An example of using FastAPI with Async SQLAlchemy 2."""
-import subprocess
 from contextlib import asynccontextmanager
 
+import uvicorn
 from fastapi import Depends, FastAPI
 from sqlalchemy import select
 
@@ -42,4 +42,4 @@ async def get_users(session=Depends(get_db)):
 
 
 if __name__ == "__main__":
-    subprocess.call(["uvicorn", "main:app", "--reload"])
+    uvicorn.run("main:app", reload=True)

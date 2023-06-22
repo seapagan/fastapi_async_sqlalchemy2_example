@@ -48,6 +48,12 @@ Run the server using `Uvicorn`:
 uvicorn main:app --reload
 ```
 
+> You can also run the server by just executing the `main.py` file:
+>
+> ```console
+> python main.py
+> ```
+
 Then open your browser at [http://localhost:8000](http://localhost:8000).
 
 There is only one endpoint available: `/users`. It returns a list of all users
