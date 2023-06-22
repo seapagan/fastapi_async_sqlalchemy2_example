@@ -33,6 +33,21 @@ poetry shell
 
 ## Usage
 
+This example uses [PostgreSQL](https://www.postgresql.org/) as the database. If
+you dont have a local PostgreSQL database running, you can start one with
+[Docker](https://www.docker.com) using the following command:
+
+```bash
+docker exec -it postgres psql -U postgres
+```
+
+This will run a PostgreSQL database in a Docker container in the background.
+When you are finished and want to stop the database, run:
+
+```bash
+docker stop postgres
+```
+
 Run the server using `Uvicorn`:
 
 ```bash
