@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "async-sqlalchemy2-fastapi"
+version = "0.1.0"
+description = "Test project for async sqlalchemy and fastapi"
+authors = ["Grant Ramsay (seapagan) <seapagan@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8.1,<4.0"
+fastapi = "^0.97.0"
+asyncpg = "^0.27.0"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.16"}
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
+
+[tool.poetry.group.dev.dependencies]
+# linting and formatting tools
+flake8 = "^6.0.0"
+flake8-docstrings = "^1.7.0"
+flake8-pyproject = "^1.2.3"
+flake8-pytest-style = "^1.7.2"
+black = "^23.3.0"
+pep8-naming = "^0.13.3"
+pylint = "^2.17.4"
+pydocstyle = "^6.3.0"
+bandit = "^1.7.5"
+pre-commit = "^3.3.3"
+
+# adds ability to run tasks from pyproject.toml
+poethepoet = "^0.20.0"
+
+# for testing
+pytest = "^7.3.2"
+pytest-cov = "^4.0.0"
+pytest-xdist = "^3.2.1"
+pytest-sugar = "^0.9.7"
+pytest-randomly = "^3.12.0"
+pytest-reverse = "^1.6.0"
+pytest-asyncio = "^0.21.0"
+pytest-mock = "^3.11.1"
+mock = "^5.0.2"
+faker = "^18.10.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+serve = "uvicorn main:app --reload"
+pre = "pre-commit run --all-files"
+lint = "pylint **/*.py"
+
+[tool.flake8]
+exclude = ["__init__.py", ".git", "app/migrations/versions/*"]
+max-line-length = 80
+docstring-convention = "google"
+
+[tool.bandit]
+exclude_dirs = []
+
+[tool.bandit.assert_used]
+skips = ['*_test.py', '*/test_*.py']
+
+[tool.pydocstyle]
+# add-ignore = ["D104"]
+
+[tool.pytest.ini_options]
+addopts = [
+  "--cov",
+  "--cov-report", "term-missing",
+  "--cov-report", "html",
+  ]
+filterwarnings = []
+mock_use_standalone_module = true
+markers = [
+  "unit: Unit tests",
+  "integration: Integration tests",
+]
+
+[tool.coverage.run]
+# source = []
+omit = ["*/tests/*"]
