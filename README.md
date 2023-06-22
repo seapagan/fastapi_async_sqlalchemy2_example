@@ -1,4 +1,12 @@
-# Simple example how to use FastAPI with Async SQLAlchemy 2.0
+# Simple example how to use FastAPI with Async SQLAlchemy 2.0 <!-- omit from toc -->
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Local Postgres server using Docker](#local-postgres-server-using-docker)
+- [License](#license)
+
+## Introduction
 
 I've been using [FastAPI](https://fastapi.tiangolo.com/) and
 [SQLAlchemy](https://www.sqlalchemy.org/) combined with
@@ -21,36 +29,21 @@ Clone the repository and install the dependencies. This project uses
 [Poetry](https://python-poetry.org/) for dependency management which should be
 installed on your system first.
 
-```bash
+```console
 poetry install
 ```
 
 Then switch to the virtual environment:
 
-```bash
+```console
 poetry shell
 ```
 
 ## Usage
 
-This example uses [PostgreSQL](https://www.postgresql.org/) as the database. If
-you dont have a local PostgreSQL database running, you can start one with
-[Docker](https://www.docker.com) using the following command:
-
-```bash
-docker exec -it postgres psql -U postgres
-```
-
-This will run a PostgreSQL database in a Docker container in the background.
-When you are finished and want to stop the database, run:
-
-```bash
-docker stop postgres
-```
-
 Run the server using `Uvicorn`:
 
-```bash
+```console
 uvicorn main:app --reload
 ```
 
@@ -58,6 +51,38 @@ Then open your browser at [http://localhost:8000](http://localhost:8000).
 
 There is only one endpoint available: `/users`. It returns a list of all users
 for a `GET` request and creates a new user for a `POST` request.
+
+### Local Postgres server using Docker
+
+This example uses [PostgreSQL](https://www.postgresql.org/) as the database. If
+you dont have a local PostgreSQL database running, you can start one with
+[Docker](https://www.docker.com) using the following command:
+
+```console
+docker run \
+  --rm   \
+  --name  postgres \
+  -p 5432:5432 \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=postgres \
+  -d postgres
+```
+
+This will run a PostgreSQL database in a Docker container in the background.
+When you are finished and want to stop the database, run:
+
+```console
+docker stop postgres
+```
+
+If needed, you can connect to the database managment by :
+
+```console
+docker exec -it postgres psql -U postgres
+```
+
+This will allow you to edit or delete the database or records.
 
 ## License
 
