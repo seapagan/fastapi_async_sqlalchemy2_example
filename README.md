@@ -18,8 +18,8 @@ SQLAlchemy 2.0.
 ## Installation
 
 Clone the repository and install the dependencies. This project uses
-[Poetry](https://python-poetry.org/) for dependency management which shouyld be
-installed on your system.
+[Poetry](https://python-poetry.org/) for dependency management which should be
+installed on your system first.
 
 ```bash
 poetry install
