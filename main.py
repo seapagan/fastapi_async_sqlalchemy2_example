@@ -5,18 +5,8 @@ from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI
 from sqlalchemy import select
 
-from db import Base, async_session, engine
+from db import get_db, init_models
 from models import User
-
-
-async def init_models():
-    """Create tables if they don't already exist.
-
-    In a real-life example we would use Alembic to manage migrations.
-    """
-    async with engine.begin() as conn:
-        # await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
 
 
 @asynccontextmanager
@@ -27,16 +17,6 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-
-
-async def get_db():
-    """Get a database session.
-
-    To be used for dependency injection.
-    """
-    async with async_session() as session:
-        async with session.begin():
-            yield session
 
 
 @app.get("/")
