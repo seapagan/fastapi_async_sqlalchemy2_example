@@ -1,4 +1,4 @@
-# Simple example how to use FastAPI with Async SQLAlchemy 2.0 <!-- omit from toc -->
+# Using FastAPI with Async SQLAlchemy 2.0 <!-- omit from toc -->
 
 - [Introduction](#introduction)
 - [Installation](#installation)
