@@ -1,3 +1,4 @@
+"""Define Models used in this example."""
 from sqlalchemy import Column, Integer, String
 
 from db import Base

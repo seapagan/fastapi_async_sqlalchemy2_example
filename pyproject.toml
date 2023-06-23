@@ -13,6 +13,11 @@ asyncpg = "^0.27.0"
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.16"}
 uvicorn = {extras = ["standard"], version = "^0.22.0"}
 aiosqlite = "^0.19.0"
+mkdocs = "^1.4.3"
+mkdocs-material = "^9.1.16"
+mkdocs-minify-plugin = "^0.6.4"
+pymdown-extensions = "^10.0.1"
+pygments = "^2.15.1"
 
 [tool.poetry.group.dev.dependencies]
 # linting and formatting tools
