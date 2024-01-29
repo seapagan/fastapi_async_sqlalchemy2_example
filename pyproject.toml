@@ -8,9 +8,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
-fastapi = { extras = ["all"], version = "^0.103.0" }
+fastapi = { extras = ["all"], version = "0.109.0" }
 asyncpg = "^0.29.0"
-sqlalchemy = { extras = ["asyncio"], version = "^2.0.16" }
+sqlalchemy = { extras = ["asyncio"], version = "2.0.25" }
 uvicorn = { extras = ["standard"], version = "^0.22.0" }
 aiosqlite = "^0.19.0"
 
@@ -66,6 +66,10 @@ markdown.help = "Run markdown checks"
 "docs:serve".help = "Serve documentation locally"
 "docs:serve:all".cmd = "mkdocs serve"
 "docs:serve:all".help = "Serve documentation locally on all interfaces"
+
+# generate the CHANGELOG.md file
+changelog.cmd = "github-changelog-md"
+changelog.help = "Generate the CHANGELOG.md file"
 
 [tool.pymarkdown]
 plugins.md014.enabled = false
