@@ -7,6 +7,7 @@ import uvicorn
 from db import get_db, init_models
 from fastapi import Depends, FastAPI
 from models import User
+from schema import UserResponseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -27,7 +28,7 @@ async def root() -> dict[str, str]:
     return {"message": "Test API for FastAPI and Async SQLAlchemy ."}
 
 
-@app.post("/users/")
+@app.post("/users/", response_model=UserResponseModel)
 async def create_user(
     name: str, email: str, session: AsyncSession = Depends(get_db)
 ) -> User:
@@ -37,7 +38,7 @@ async def create_user(
     return user
 
 
-@app.get("/users/")
+@app.get("/users/", response_model=Sequence[UserResponseModel])
 async def get_users(session: AsyncSession = Depends(get_db)) -> Sequence[User]:
     """Get all users."""
     result = await session.execute(select(User))
