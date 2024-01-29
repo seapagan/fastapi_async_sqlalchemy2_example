@@ -1,7 +1,6 @@
 """Define Models used in this example."""
-from sqlalchemy import Column, Integer, String
-
 from db import Base
+from sqlalchemy import Column, Integer, String
 
 
 class User(Base):
