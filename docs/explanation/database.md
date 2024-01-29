@@ -35,8 +35,8 @@ DATABASE_URL = "postgresql+asyncpg://postgres:postgres@localhost/postgres"
 We set a variable to be used later which contains the database URL. We are using
 PostgreSQL, but you can use any database that SQLAlchemy supports. The commented
 out line is for SQLite, which is a good choice for testing. You can comment out
-the PostgreSQL line (**13**)and uncomment the SQLite line (**14**)to use SQLite
-instead.
+the PostgreSQL line (**13**) and uncomment the SQLite line (**14**) to use
+SQLite instead.
 
 This is a basic connection string, in reality you would want to use environment
 variables to store the user/password and database name.
@@ -134,7 +134,7 @@ async def init_models() -> None:
     In a real-life example we would use Alembic to manage migrations.
     """
     async with async_engine.begin() as conn:
-        # await conn.run_sync(Base.metadata.drop_all)  # noqa: ERA001
+        # await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 ```
 
@@ -143,6 +143,10 @@ using the `async_engine` object directly instead of the `async_session` object.
 On line **57** we use the `run_sync` method to run the `create_all` method of
 the `Base.metadata` object (a syncronous function). This will create all of the
 tables defined in the models.
+
+If you want to drop the tables and recreate them every time the server restarts,
+you can uncomment line **56**. This is obviously not much good for production
+use, but it can be useful for testing.
 
 Next, we will look at the models themselves and the Schemas used to validate
 them within FastAPI.
