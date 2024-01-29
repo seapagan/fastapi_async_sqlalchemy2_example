@@ -3,6 +3,8 @@ site_name: Async SQLAlchemy 2 with FastAPI
 repo_url: https://github.com/seapagan/fastapi_async_sqlalchemy2_example
 repo_name: fastapi_async_sqlalchemy2
 
+dev_addr: "127.0.0.1:9000"
+
 theme:
   name: material
   features:
@@ -17,6 +19,8 @@ extra:
       link: https://github.com/seapagan
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/gnramsay-dev
+
+copyright: © 2023-2024 Grant Ramsay (Seapagan)
 
 plugins:
   - search

@@ -2,9 +2,9 @@
 
 ## Installation
 
-Clone the repository and install the dependencies. This project uses
-[Poetry][poetry]{:target="_blank"} for dependency management which should be
-installed on your system first.
+Clone the repository from [here][repo]{:target="_blank"} and install the
+dependencies. This project uses [Poetry][poetry]{:target="_blank"} for
+dependency management which should be installed on your system first.
 
 ```console
 poetry install
@@ -30,7 +30,8 @@ uvicorn main:app --reload
 > python main.py
 > ```
 
-Then open your browser at [http://localhost:8000](http://localhost:8000).
+Then open your browser at
+[http://localhost:8000](http://localhost:8000){:target="_blank"}.
 
 There is only one endpoint available: `/users`. It returns a list of all users
 for a `GET` request and creates a new user for a `POST` request.
@@ -83,3 +84,4 @@ DATABASE_URL = "sqlite+aiosqlite:///./test.db"
 [postgres]:https://www.postgresql.org/
 [docker]:https://www.docker.com/
 [sqlite]:https://www.sqlite.org/
+[repo]:https://github.com/seapagan/fastapi_async_sqlalchemy2_example
