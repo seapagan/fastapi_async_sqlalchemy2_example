@@ -1,16 +1,19 @@
 """An example of using FastAPI with Async SQLAlchemy 2."""
+from collections.abc import AsyncGenerator, Sequence
 from contextlib import asynccontextmanager
+from typing import Any
 
 import uvicorn
-from fastapi import Depends, FastAPI
-from sqlalchemy import select
-
 from db import get_db, init_models
+from fastapi import Depends, FastAPI
 from models import User
+from schema import UserResponseModel
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI) -> AsyncGenerator[Any, None]:  # noqa: ARG001
     """Run tasks before and after the server starts."""
     await init_models()
     yield
@@ -20,25 +23,26 @@ app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/")
-async def root():
+async def root() -> dict[str, str]:
     """Root endpoint."""
     return {"message": "Test API for FastAPI and Async SQLAlchemy ."}
 
 
-@app.post("/users/")
-async def create_user(name: str, email: str, session=Depends(get_db)):
+@app.post("/users/", response_model=UserResponseModel)
+async def create_user(
+    name: str, email: str, session: AsyncSession = Depends(get_db)
+) -> User:
     """Add a user."""
     user = User(name=name, email=email)
     session.add(user)
     return user
 
 
-@app.get("/users/")
-async def get_users(session=Depends(get_db)):
+@app.get("/users/", response_model=Sequence[UserResponseModel])
+async def get_users(session: AsyncSession = Depends(get_db)) -> Sequence[User]:
     """Get all users."""
     result = await session.execute(select(User))
-    users = result.scalars().all()
-    return users
+    return result.scalars().all()
 
 
 if __name__ == "__main__":

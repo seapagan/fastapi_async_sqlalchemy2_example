@@ -1,0 +1,46 @@
+site_name: Async SQLAlchemy 2 with FastAPI
+
+repo_url: https://github.com/seapagan/fastapi_async_sqlalchemy2_example
+repo_name: fastapi_async_sqlalchemy2
+
+dev_addr: "127.0.0.1:9000"
+
+theme:
+  name: material
+  features:
+    - navigation.footer
+    - navigation.expand
+
+extra:
+  social:
+    - icon: material/web
+      link: https://www.gnramsay.com
+    - icon: fontawesome/brands/github
+      link: https://github.com/seapagan
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/gnramsay-dev
+
+copyright: © 2023-2024 Grant Ramsay (Seapagan)
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+      minify_css: true
+      minify_js: true
+      htmlmin_opts:
+        remove_comments: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      linenums: false
+      auto_title: false
+  - attr_list
+
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - Code Description: explanation.md
+  - License: license.md
