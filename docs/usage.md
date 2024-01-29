@@ -2,9 +2,11 @@
 
 ## Installation
 
-Clone the repository from [here][repo]{:target="_blank"} and install the
+Clone [this repository][repo]{:target="_blank"} and install the
 dependencies. This project uses [Poetry][poetry]{:target="_blank"} for
 dependency management which should be installed on your system first.
+
+Install the dependencies:
 
 ```console
 poetry install
@@ -24,11 +26,18 @@ Run the server using `Uvicorn`:
 uvicorn main:app --reload
 ```
 
-> You can also run the server by just executing the `main.py` file:
->
-> ```console
-> python main.py
-> ```
+!!! note
+    You can also run the server by just executing the `main.py` file:
+
+    ```console
+    python main.py
+    ```
+
+    or using the included `POE` alias:
+
+    ```console
+    poe serve
+    ```
 
 Then open your browser at
 [http://localhost:8000](http://localhost:8000){:target="_blank"}.

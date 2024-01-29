@@ -57,6 +57,10 @@ markdown.help = "Run markdown checks"
 "docs:serve:all".cmd = "mkdocs serve"
 "docs:serve:all".help = "Serve documentation locally on all interfaces"
 
+# generate the CHANGELOG.md file
+changelog.cmd = "github-changelog-md"
+changelog.help = "Generate the CHANGELOG.md file"
+
 [tool.pymarkdown]
 plugins.md014.enabled = false
 plugins.md046.enabled = false
