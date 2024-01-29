@@ -10,6 +10,9 @@ theme:
   features:
     - navigation.footer
     - navigation.expand
+    - navigation.prune
+    - content.code.copy
+    - content.code.annotate
 
 extra:
   social:
@@ -34,13 +37,19 @@ plugins:
 markdown_extensions:
   - admonition
   - pymdownx.snippets
+  - pymdownx.superfences
+  - md_in_html
   - pymdownx.highlight:
-      linenums: false
+      linenums: true
       auto_title: false
   - attr_list
 
 nav:
   - Home: index.md
   - Usage: usage.md
-  - Code Description: explanation.md
+  - Code Description:
+      - Introduction: explanation/intro.md
+      - Database Setup: explanation/database.md
+      - Models and Schemas: explanation/models.md
+      - Application and Routes: explanation/main.md
   - License: license.md
