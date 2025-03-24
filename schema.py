@@ -1,4 +1,5 @@
 """Set up some schemas for the database."""
+
 from pydantic import BaseModel
 
 

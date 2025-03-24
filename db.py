@@ -1,4 +1,5 @@
 """Set up the database connection and session.""" ""
+
 from collections.abc import AsyncGenerator
 from typing import Any
 

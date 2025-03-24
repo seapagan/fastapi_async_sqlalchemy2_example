@@ -27,17 +27,19 @@ SQLAlchemy 2.0.
 ## Installation
 
 Clone the repository and install the dependencies. This project uses
-[Poetry](https://python-poetry.org/) for dependency management which should be
+[uv](https://docs.astral.sh/uv/) for dependency management which should be
 installed on your system first.
 
+Install the project dependencies:
+
 ```console
-poetry install
+uv sync
 ```
 
 Then switch to the virtual environment:
 
 ```console
-poetry shell
+source .venv/bin/activate
 ```
 
 ## Usage
@@ -109,7 +111,7 @@ This project is licensed under the terms of the MIT license.
 ```pre
 MIT License
 
-Copyright (c) 2023-2024 Grant Ramsay
+Copyright (c) 2023-2025 Grant Ramsay
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
