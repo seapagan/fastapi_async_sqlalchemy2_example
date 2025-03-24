@@ -1,46 +1,36 @@
-[tool.poetry]
+[project]
 name = "async-sqlalchemy2-fastapi"
 version = "0.1.0"
 description = "Test project for async sqlalchemy and fastapi"
-authors = ["Grant Ramsay (seapagan) <seapagan@gmail.com>"]
+authors = [{ name = "Grant Ramsay (seapagan)", email = "seapagan@gmail.com" }]
 license = "MIT"
 readme = "README.md"
+requires-python = ">=3.9"
 
-[tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-fastapi = { extras = ["all"], version = "^0.103.0" }
-asyncpg = "^0.29.0"
-sqlalchemy = { extras = ["asyncio"], version = "^2.0.16" }
-uvicorn = { extras = ["standard"], version = "^0.22.0" }
-aiosqlite = "^0.19.0"
-
-[tool.poetry.group.dev.dependencies]
-# linting and formatting tools
-mypy = "^1.8.0"
-pre-commit = "^3.4.0"
-pymarkdownlnt = "^0.9.14"
-ruff = "^0.1.11"
-
-# for typing
-asyncpg-stubs = "^0.29.1"
-
-# changelog generation
-github-changelog-md = "^0.8.0"
-
-# docs
-mkdocs = "^1.4.3"
-mkdocs-material = "^9.1.16"
-mkdocs-minify-plugin = "^0.6.4"
-pymdown-extensions = "^10.0.1"
-pygments = "^2.15.1"
-
-# adds ability to run tasks from pyproject.toml
-poethepoet = "^0.20.0"
+dependencies = [
+  "asyncpg>=0.30.0",
+  "fastapi[standard]>=0.115.4",
+  "sqlalchemy[asyncio]>=2.0.36",
+  "uvicorn[standard]>=0.32.0",
+  "aiosqlite>=0.19.0",
+]
 
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv]
+dev-dependencies = [
+  "mypy>=1.8.0",
+  "pre-commit>=3.4.0",
+  "pymarkdownlnt>=0.9.14",
+  "ruff>=0.1.11",
+  "asyncpg-stubs>=0.29.1",
+  "github-changelog-md>=0.8.0",
+  "mkdocs>=1.4.3",
+  "mkdocs-material>=9.1.16",
+  "mkdocs-minify-plugin>=0.6.4",
+  "pymdown-extensions>=10.0.1",
+  "pygments>=2.15.1",
+  "poethepoet>=0.20.0",
+]
 
 [tool.poe.tasks]
 # setup PoeThePoet tasks
@@ -75,19 +65,6 @@ plugins.md013.enabled = false
 
 [tool.ruff]
 line-length = 80
-select = ["ALL"] # we are being very strict!
-ignore = [
-  "ANN101",
-  "PGH003",
-  "FBT002",
-  "FBT003",
-  "B006",
-] # These rules are too strict even for us 😝
-extend-ignore = [
-  "COM812", # ignored for ruff formatting
-  "ISC001", # ignored for ruff formatting
-  "T201",   # temporary ignore for now, will remove when migrate to logging
-]
 
 src = ["app"]
 extend-exclude = [
@@ -99,13 +76,27 @@ target-version = "py39" # minimum python version supported
 indent-style = "space"
 quote-style = "double"
 
-[tool.ruff.pep8-naming]
+[tool.ruff.lint]
+select = ["ALL"] # we are being very strict!
+extend-ignore = [
+  "COM812", # ignored for ruff formatting
+  "ISC001", # ignored for ruff formatting
+  "T201",   # temporary ignore for now, will remove when migrate to logging
+]
+ignore = [
+  "PGH003",
+  "FBT002",
+  "FBT003",
+  "B006",
+] # These rules are too strict even for us 😝
+
+[tool.ruff.lint.pep8-naming]
 classmethod-decorators = ["pydantic.validator", "pydantic.root_validator"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.extend-per-file-ignores]
+[tool.ruff.lint.extend-per-file-ignores]
 "tests/**/*.py" = [
   "S101",   # we can (and MUST!) use 'assert' in test files.
   "ANN001", # annotations for fixtures are sometimes a pain for test files.
@@ -116,7 +107,7 @@ convention = "google"
   "RUF012",
 ]
 
-[tool.ruff.flake8-bugbear]
+[tool.ruff.lint.flake8-bugbear]
 extend-immutable-calls = [
   "fastapi.Depends",
   "fastapi.params.Depends",
@@ -127,10 +118,10 @@ extend-immutable-calls = [
 [tool.ruff.lint.flake8-builtins]
 builtins-ignorelist = ["id"]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["app"]
 
-[tool.ruff.pyupgrade]
+[tool.ruff.lint.pyupgrade]
 keep-runtime-typing = true
 
 [tool.mypy]

@@ -1,7 +1,8 @@
 """An example of using FastAPI with Async SQLAlchemy 2."""
+
 from collections.abc import AsyncGenerator, Sequence
 from contextlib import asynccontextmanager
-from typing import Any
+from typing import Annotated, Any
 
 import uvicorn
 from db import get_db, init_models
@@ -30,7 +31,7 @@ async def root() -> dict[str, str]:
 
 @app.post("/users/", response_model=UserResponseModel)
 async def create_user(
-    name: str, email: str, session: AsyncSession = Depends(get_db)
+    name: str, email: str, session: Annotated[AsyncSession, Depends(get_db)]
 ) -> User:
     """Add a user."""
     user = User(name=name, email=email)
@@ -39,7 +40,9 @@ async def create_user(
 
 
 @app.get("/users/", response_model=Sequence[UserResponseModel])
-async def get_users(session: AsyncSession = Depends(get_db)) -> Sequence[User]:
+async def get_users(
+    session: Annotated[AsyncSession, Depends(get_db)],
+) -> Sequence[User]:
     """Get all users."""
     result = await session.execute(select(User))
     return result.scalars().all()

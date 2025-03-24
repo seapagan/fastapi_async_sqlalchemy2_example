@@ -1,4 +1,5 @@
 """Define Models used in this example."""
+
 from db import Base
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
