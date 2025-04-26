@@ -3,19 +3,23 @@
 ## Installation
 
 Clone [this repository][repo]{:target="_blank"} and install the
-dependencies. This project uses [Poetry][poetry]{:target="_blank"} for
+dependencies. This project uses [uv][uv]{:target="_blank"} for
 dependency management which should be installed on your system first.
 
 Install the dependencies:
 
 ```console
-poetry install
+uv sync
 ```
 
 Then switch to the virtual environment:
 
 ```console
-poetry shell
+# On Linux:
+source .venv/bin/activate
+
+# On Windows:
+.venv\Scripts\activate
 ```
 
 ## Usage
@@ -89,7 +93,7 @@ SQLite database.
 DATABASE_URL = "sqlite+aiosqlite:///./test.db"
 ```
 
-[poetry]: https://python-poetry.org/
+[uv]: https://docs.astral.sh/uv/
 [postgres]:https://www.postgresql.org/
 [docker]:https://www.docker.com/
 [sqlite]:https://www.sqlite.org/
