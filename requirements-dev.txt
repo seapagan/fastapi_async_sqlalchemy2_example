@@ -39,7 +39,7 @@ idna==3.10
 importlib-metadata==8.6.1 ; python_full_version < '3.10'
 jinja2==3.1.6
 jsmin==3.0.1
-markdown==3.7
+markdown==3.8.1
 markdown-it-py==3.0.0
 markupsafe==3.0.2
 mdurl==0.1.2
